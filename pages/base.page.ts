@@ -9,11 +9,16 @@ export class BasePage {
     this._page = _page;
   }
 
-  public async goto(url: string, options: GotoOptions): Promise<Response | null> {
+  public async goto(
+    url: string,
+    options: GotoOptions,
+  ): Promise<Response | null> {
     return this._page.goto(url, options);
   }
 
-  public async waitForLoadStage(option: BasicWait = "domcontentloaded",): Promise<void> {
+  public async waitForLoadStage(
+    option: BasicWait = "domcontentloaded",
+  ): Promise<void> {
     await this._page.waitForLoadState(option);
   }
 

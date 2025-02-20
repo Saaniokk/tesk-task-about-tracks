@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "execute": " ",
+    "execute": "npx playwright test",
     "show-last-report": "npx playwright show-report",
-    "lint-fix": "eslint . --fix"
+    "lint-fix": "eslint . --fix",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "Oleksandr Voitiuk",
@@ -21,9 +23,10 @@
     "eslint-define-config": "^2.1.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsdoc": "^50.6.3",
+    "eslint-plugin-playwright": "^2.2.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-promise": "^7.2.1",
     "globals": "^16.0.0",
-    "prettier": "^3.5.0"
+    "prettier": "^3.5.1"
   }
 }

@@ -16,7 +16,7 @@ test.describe("Flow for create your own unique playlist", () => {
       { name: "Autumn Leaves", locator: mainPage.trackAutumnLeaves },
       { name: "Winter Winds", locator: mainPage.trackWinterWinds },
       { name: "Spring Dance", locator: mainPage.trackSpringDance },
-      { name: "Rainy Mood", locator: mainPage.trackRainyMood }
+      { name: "Rainy Mood", locator: mainPage.trackRainyMood },
     ];
 
     for (const track of tracksToCheck) {
@@ -34,7 +34,7 @@ test.describe("Flow for create your own unique playlist", () => {
       }
 
       // Clearing the search field before the next check
-      await mainPage.searchField.fill('');
+      await mainPage.searchField.fill("");
     }
   });
 
@@ -42,7 +42,13 @@ test.describe("Flow for create your own unique playlist", () => {
     test.info().annotations.push({ type: "TestCaseID", description: "2" });
 
     // Array of track names
-    const trackNames = ["Summer Breeze", "Autumn Leaves", "Winter Winds", "Spring Dance", "Rainy Mood"];
+    const trackNames = [
+      "Summer Breeze",
+      "Autumn Leaves",
+      "Winter Winds",
+      "Spring Dance",
+      "Rainy Mood",
+    ];
 
     for (let i = 0; i < trackNames.length; i++) {
       const trackName = trackNames[i];
@@ -59,24 +65,31 @@ test.describe("Flow for create your own unique playlist", () => {
     }
   });
 
-  test("Verify Total Duration of the Playlist in Seconds", async ({ mainPage }) => {
+  test("Verify Total Duration of the Playlist in Seconds", async ({
+    mainPage,
+  }) => {
     test.info().annotations.push({ type: "TestCaseID", description: "3" });
 
     // Array of track names
-    const trackNames = ["Summer Breeze", "Autumn Leaves", "Winter Winds", "Spring Dance", "Rainy Mood"];
+    const trackNames = [
+      "Summer Breeze",
+      "Autumn Leaves",
+      "Winter Winds",
+      "Spring Dance",
+      "Rainy Mood",
+    ];
     // Array of track Durations
     const trackDurations = ["03:35", "03:15", "03:20", "04:00", "03:00"];
 
     for (let i = 0; i < trackNames.length; i++) {
-
       await mainPage.plusButton.nth(i).click();
-
-      
     }
     // Total Duration in second counted on UI
     const totalDurationByCode = await mainPage.playListDuration.innerText();
     // Retrieve the displayed total duration and check for equality
-    const expectedTotalDuration = trackDurations.map(duration => mainPage.convertDurationToSeconds(duration)).reduce((total, seconds) => total + seconds)
+    const expectedTotalDuration = trackDurations
+      .map((duration) => mainPage.convertDurationToSeconds(duration))
+      .reduce((total, seconds) => total + seconds);
     await expect(Number(totalDurationByCode)).toEqual(expectedTotalDuration);
-  })
+  });
 });
